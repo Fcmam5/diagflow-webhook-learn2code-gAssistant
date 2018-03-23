@@ -46,7 +46,7 @@ app.post('/api',(req, res, next) => {
   let tutsResponse = []
 
   tutsResponse = tutorials
-                  .reduce((t, result) => {
+                  .reduce((result, t) => {
                       if ((params.programming_lang === t.programming_lang) &&
                                 (t.language === params.language) ||
                                 (t.nature === params.nature)
