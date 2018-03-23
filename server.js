@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const PORT = process.env.PORT || 3000
 let tutorialModel = require('./tutorialModel')
 let tutorials = []
 let log = []
@@ -89,4 +90,4 @@ app.get('/api/tutorials', (req, res, next) => {
   return res.status(200).json({"tutorials": tutorials})
 })
 
-app.listen(3000)
+app.listen(PORT)
