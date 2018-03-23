@@ -8,14 +8,43 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-/* GET home page. */
+/**
+* HACK: Hardcoded inputs
+*/
+tutorials = [
+  {
+    "title": "Learn to code and Help Nonprofits with FreeCodeCamp",
+    "link": "https://www.freecodecamp.org/",
+    "programming_lang": "Javascript",
+    "nature": "written",
+    "language": "English"
+  },
+  {
+    "title": "Eloquent JavaScript",
+    "link": "https://eloquentjavascript.net/",
+    "programming_lang": "Javascript",
+    "nature": "written",
+    "language": "English"
+  },
+  {
+    "title": "Derek Banas: JavaScript Tutorial",
+    "link": "https://www.youtube.com/watch?v=fju9ii8YsGs",
+    "programming_lang": "Javascript",
+    "nature": "videos",
+    "language": "English"
+  },
+
+]
+
+
+/* Answering API */
 app.post('/api',(req, res, next) => {
   let params = req.body.result.parameters
   let tutsResponse = []
 
   tutsResponse = tutorials
                   .reduce((t, result) => {
-                      if ((params.programming_lang = t.programming_lang) &&
+                      if ((params.programming_lang === t.programming_lang) &&
                                 (t.language === params.language) ||
                                 (t.nature === params.nature)
                               ) return result.push(t.getRessource() + "\n")
@@ -32,6 +61,10 @@ app.post('/api',(req, res, next) => {
           })
 })
 
+/*
+* Create a new tutorial
+* TODO: Switch to DB
+*/
 app.get('/api',(req, res, next) => {
     res.json({"log": log})
 })
@@ -49,6 +82,9 @@ app.post('/api/tutorials/', (req, res, next) => {
   return res.status(201).json({"tutorials": tutorials})
 })
 
+/**
+* Get a list of tutorials
+*/
 app.get('/api/tutorials', (req, res, next) => {
   return res.status(200).json({"tutorials": tutorials})
 })
