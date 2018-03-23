@@ -47,7 +47,7 @@ app.post('/api',(req, res, next) => {
 
   tutsResponse = tutorials.reduce((result, t) => {
                       if ((params.programming_lang === t.programming_lang) &&
-                                (t.language === params.language) ||
+                                (t.language === params.language) &&
                                 (t.nature === params.tuto_nature)
                               ) return result.concat(t.title + " (" + t.link + "), ")
                             else {
