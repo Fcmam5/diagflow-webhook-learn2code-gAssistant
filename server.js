@@ -58,7 +58,7 @@ app.post('/api',(req, res, next) => {
   log.push({"params":params,"returned": tutsResponse})
 
   return res.json({
-            "speech": "I've found about" + tutsResponse.length + " tutorials",
+            "speech": tutsResponse.join(),
             "displayText": tutsResponse.join()
           })
 })
