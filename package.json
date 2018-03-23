@@ -2,6 +2,9 @@
   "name": "ga_diagflow",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "6.10.2"
+  },
   "scripts": {
     "start": "node server.js"
   },
