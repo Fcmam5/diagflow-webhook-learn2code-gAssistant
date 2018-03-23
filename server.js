@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 3000
+const path = require('path')
 let tutorialModel = require('./tutorialModel')
 let tutorials = []
 let log = []
@@ -8,6 +9,7 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
 
 /**
 * HACK: Hardcoded inputs
@@ -90,4 +92,11 @@ app.get('/api/tutorials', (req, res, next) => {
   return res.status(200).json({"tutorials": tutorials})
 })
 
+/**
+* Privacy policy
+*/
+
+app.get('/privacy-policy', function(req, res) {
+    res.sendFile(path.join(__dirname + '/templates/privacy.html'));
+});
 app.listen(PORT)
