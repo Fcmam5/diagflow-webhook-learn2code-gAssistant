@@ -60,7 +60,7 @@ app.post('/api',(req, res, next) => {
 
   return res.json({
             "speech": "I've found about" + tutsResponse.length + " tutorials",
-            "displayText": tutsResponse
+            "displayText": tutsResponse.join()
           })
 })
 
